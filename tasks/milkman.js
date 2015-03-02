@@ -6,12 +6,17 @@ module.exports = function( grunt ) {
   	
   	 grunt.registerMultiTask('milkman', 'Synch files to projects', function() {
   	 	console.log('milk task run'.rainbow);
+  	 	
   	 	var options = this.options({
 	      compress: false
 	    });
 
 	    // Iterate over all src-dest file pairs.
-	    this.files.forEach(function (both) {
+	    (function(f, cb) {
+	    	for (var i in f) {
+	    		if (f.hasOwnProperty(i)) cb(f[i]);
+	    	}
+	    })(this.files, function (both) {
 	    	 
 	    	var target = both.dest;
 	    	var source = both.orig.src[0];
@@ -29,12 +34,13 @@ module.exports = function( grunt ) {
 	    	
 	    	var imported = {};
 	    	/* Смотрим тип файла */
+
 	    	if (fs.lstatSync(source).isDirectory) {
-	    		fs.readdir(source, function(err, files) {
-	    			for (var i = 0;i<files.length;i++) {
-	    				imported[source+files[i]] = target+files[i];
-	    			}
-	    		});
+	    		var files = fs.readdirSync(source);
+	    		
+	    		for (var i=0;i<files.length;i++) {
+	    			imported[source+files[i]] = target+files[i];
+	    		};
 	    	} else {
 	    		imported[source] = target;
 	    	}
@@ -44,11 +50,13 @@ module.exports = function( grunt ) {
 				return;
 			}
 			// Get local file
-			//
-			imported.forEach(function(t, s) {
+			;(function(f, cb) {
+		    	for (var i in f) {
+		    		if (f.hasOwnProperty(i)) cb(f[i], i);
+		    	}
+		    })(imported, function(t, s) {
 				mkdirp(path.dirname(t), function() {
 					fs.createReadStream(s).pipe(fs.createWriteStream(t));
-					console.log('copy '+s+' to '+t);
 				});	    
 			});
 			
