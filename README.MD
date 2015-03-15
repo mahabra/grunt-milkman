@@ -1,2 +1,2 @@
 ## Descript
-http://morulus.github.io/grunt-contrib-milkman/
+http://morulus.github.io/grunt-milkman/

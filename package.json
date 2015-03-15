@@ -1,23 +1,23 @@
 {
-  "name": "grunt-contrib-milkman",
+  "name": "grunt-milkman",
   "description": "Autocopy files to another folder",
   "version": "0.0.1",
-  "homepage": "https://github.com/morulus/grunt-contrib-milkman",
+  "homepage": "https://github.com/morulus/grunt-milkman",
   "author": {
     "name": "Vladimir Kalmykov",
     "url": "http://morulus.ru/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/morulus/grunt-contrib-milkman.git"
+    "url": "git://github.com/morulus/grunt-milkman.git"
   },
   "bugs": {
-    "url": "https://github.com/morulus/grunt-contrib-milkman/issues"
+    "url": "https://github.com/morulus/grunt-milkman/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/morulus/grunt-contrib-milkman/blob/master/LICENSE-MIT"
+      "url": "https://github.com/morulus/grunt-milkman/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
